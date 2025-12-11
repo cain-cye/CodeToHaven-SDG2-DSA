@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Zero Hunger</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Login box only (your design stays untouched) */
+.login-box {
+  width: 350px;
+  margin: 150px auto;
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.login-box input {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 2px solid black;
+}
+.login-box button {
+  padding: 12px 25px;
+  border: 2px solid black;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.login-box button:hover {
+  text-shadow: 0 0 8px #ff69b4;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">ZERO HUNGER</div>
+  <div class="nav-links">
+    <a href="login.html">Login</a>
+    <a href="user-home.html">User Home</a>
+    <a href="admin-home.html">Admin Home</a>
+  </div>
+</header>
+
+<div class="login-box">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="loginUser()">Login</button>
+</div>
+
+<script>
+function loginUser() {
+  let username = document.getElementById("username").value.trim().toLowerCase();
+
+  if (username === "admin") {
+    window.location.href = "admin-home.html";
+  } else {
+    window.location.href = "user-home.html";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Zero Hunger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">ZERO HUNGER (ADMIN)</div>
+
+  <div class="nav-links">
+    <a href="admin-home.html">Beneficiaries</a>
+    <a href="admininventory.html">Inventory</a>
+    <a href="admindistribution.html">Distribution Records</a>
+    <a href="admineligible.html">E. Households</a>
+    <a href="admindelivery.html">D. Queue</a>
+    <a href="adminsorting.html">Sorting System</a>
+  </div>
+
+  <button class="nav-btn" onclick="location.href='login.html'">LOG OUT</button>
+</header>
+
+<section class="hero">
+  <h1>Admin Control Panel</h1>
+  <p>Monitor, update, and manage resource distribution efficiently.</p>
+
+  <div class="icon-row">
+    <div class="icon-box" onclick="location.href='adminbeneficiaries.html'">Manage Beneficiaries</div>
+    <div class="icon-box" onclick="location.href='admininventory.html'">Manage Inventory</div>
+    <div class="icon-box" onclick="location.href='adminsorting.html'">Sorting Algorithm</div>
+    <div class="icon-box" onclick="location.href='admindelivery.html'">Delivery Queue</div>
+  </div>
+</section>
+
+<section class="array-links">
+  <h2>Tools & Quick Links</h2>
+
+  <div class="array-buttons">
+    <button onclick="location.href='adminbeneficiaries.html'">Beneficiaries</button>
+    <button onclick="location.href='admininventory-logging.html'">Inventory Logging</button>
+    <button onclick="location.href='admindistribution.html'">Distribution Records</button>
+    <button onclick="location.href='adminsorting.html'">Sorting System</button>
+    <button onclick="location.href='admindelivery.html'">Delivery Queue</button>
+  </div>
+</section>
+
+<section class="menu-section">
+  <h2>Current Inventory Overview</h2>
+  <div class="menu-grid" id="inventoryGrid"></div>
+  <button class="view-btn" onclick="sortFoodByExpiry()">SORT BY EXPIRY</button>
+</section>
+
+<script>
+let inventoryArray = [
+  { name: "Rice", expiry: "2025-01-10" },
+  { name: "Canned Goods", expiry: "2024-12-02" },
+  { name: "Vegetables", expiry: "2024-11-15" }
+];
+
+window.onload = () => updateInventoryDisplay();
+
+function updateInventoryDisplay() {
+  let grid = document.getElementById("inventoryGrid");
+  grid.innerHTML = "";
+  inventoryArray.forEach(item => {
+    grid.innerHTML += `
+      <div class="item-box">
+        <h3>${item.name}</h3>
+        <p>Expiry: ${item.expiry}</p>
+        <button>Distribute</button>
+      </div>`;
+  });
+}
+
+function sortFoodByExpiry() {
+  inventoryArray.sort((a,b)=> new Date(a.expiry) - new Date(b.expiry));
+  updateInventoryDisplay();
+  alert("Sorted by expiry!");
+}
+</script>
+
+</body>
+</html>

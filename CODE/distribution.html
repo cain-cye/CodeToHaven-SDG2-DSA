@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distribution Records (Array)</title>
+<style>
+html, body {margin:0;padding:0;font-family:Arial,sans-serif;height:100%;background:url("https://www.weknowrice.com/wp-content/uploads/2022/12/PhilRice_2.jpeg") no-repeat center center fixed;background-size:cover;display:flex;flex-direction:column;}
+.navbar {width:100%;background:rgba(255,255,255,0.95);border-bottom:2px solid black;display:flex;justify-content:center;align-items:center;gap:30px;padding:15px 0;position:fixed;top:0;z-index:100;}
+.navbar .logo {font-weight:bold;font-size:24px;margin-right:40px;}
+.navbar .nav-links {display:flex;gap:20px;}
+.navbar .nav-links a {text-decoration:none;font-weight:600;color:black;transition:all 0.3s ease;}
+.navbar .nav-links a:hover {color:pink;text-shadow:0 0 10px pink;}
+.container-wrapper {flex:1;display:flex;justify-content:center;align-items:center;padding-top:100px;box-sizing:border-box;}
+.container {background:rgba(255,255,255,0.9);padding:40px;text-align:center;border:2px solid black;border-radius:10px;width:400px;}
+input, button {width:80%;margin:10px 0;padding:10px;border:2px solid black;border-radius:5px;font-size:16px;}
+button {cursor:pointer;background:white;transition:all 0.3s ease;}
+button:hover {color:pink;text-shadow:0 0 10px pink;transform:translateY(-3px);}
+ul {list-style:none;padding:0;margin-top:20px;}
+li {border:1px solid black;padding:10px;margin:5px 0;background:white;}
+a.back-btn {display:inline-block;margin-top:20px;text-decoration:none;font-weight:bold;border:2px solid black;padding:10px 20px;transition:all 0.3s ease;color:black;}
+a.back-btn:hover {color:pink;text-shadow:0 0 10px pink;transform:translateY(-3px);}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">ZERO HUNGER</div>
+  <nav class="nav-links">
+    <a href="beneficiaries.html">Beneficiaries</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="distribution.html">Distribution Records</a>
+    <a href="eligible.html">Eligible Households</a>
+    <a href="delivery.html">Delivery Queue</a>
+  </nav>
+</header>
+
+<div class="container-wrapper">
+<div class="container">
+<h2>Distribution Records</h2>
+
+<input type="text" id="recordName" placeholder="Household / Item Delivered">
+<button onclick="addRecord()">Add Record</button>
+
+<ul id="recordList"></ul>
+
+<a class="back-btn" href="home.html">Back to home</a>
+</div>
+</div>
+
+<script>
+let distribution = [];
+
+function addRecord() {
+  let name = document.getElementById("recordName").value;
+  if (!name) return alert("Enter record");
+  distribution.push(name);
+  document.getElementById("recordName").value = "";
+  renderList();
+}
+
+function renderList() {
+  let list = document.getElementById("recordList");
+  list.innerHTML = "";
+  distribution.forEach((r, n) => {
+    let li = document.createElement("li");
+    li.textContent = `${n+1}. ${r}`;
+    list.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>
