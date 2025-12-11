@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register Food — Zero Hunger</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">ZERO HUNGER</div>
+
+  <div class="nav-links">
+    <a href="home.html">Home</a>
+    <a href="eligible.html">Eligible Households</a>
+    <a href="eligibility-check.html">Eligibility Check</a>
+    <a href="delivery.html">Delivery Queue</a>
+  </div>
+
+  <button class="nav-btn" onclick="location.href='login.html'">LOG OUT</button>
+</header>
+
+<section class="hero">
+  <h1>Register Food</h1>
+</section>
+
+<section class="menu-section">
+  <h2>Register a Food Item</h2>
+
+  <form id="registerForm" class="item-box"
+    style="padding: 30px; max-width: 600px; margin: 30px auto; font-size: 18px; display: flex; flex-direction: column; gap: 15px;"
+  >
+    <label>Food Name:</label>
+    <input type="text" id="foodName" required style="padding: 12px; font-size: 16px;">
+
+    <label>Quantity:</label>
+    <input type="number" id="foodQty" min="1" required style="padding: 12px; font-size: 16px;">
+
+    <label>Expiry Date:</label>
+    <input type="date" id="foodExpiry" required style="padding: 12px; font-size: 16px;">
+
+    <button type="submit" class="view-btn" style="margin-top: 10px; padding: 12px; font-size: 16px;">
+      REGISTER FOOD
+    </button>
+  </form>
+</section>
+
+<section class="menu-section">
+  <h2>Registered Food Items (Sorted)</h2>
+  <div class="menu-grid" id="foodStore"></div>
+
+  <h3>Total Stock:</h3>
+  <div id="totalStock" class="item-box">0 items available</div>
+</section>
+
+<script>
+let foods = [];
+
+function bubbleSortFoods(arr) {
+  let n = arr.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (arr[j].name.toLowerCase() > arr[j + 1].name.toLowerCase()) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+function displayFoodStore() {
+  let grid = document.getElementById("foodStore");
+  grid.innerHTML = "";
+  let total = 0;
+
+  let sorted = bubbleSortFoods([...foods]);
+
+  sorted.forEach(item => {
+    grid.innerHTML += `
+      <div class="item-box">
+        <h3>${item.name}</h3>
+        <p>Qty: ${item.quantity}</p>
+        <p>Expiry: ${item.expiry}</p>
+      </div>`;
+    total += item.quantity;
+  });
+
+  document.getElementById("totalStock").innerHTML = `${total} items available`;
+}
+
+document.getElementById("registerForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  let name = document.getElementById("foodName").value.trim();
+  let qty = parseInt(document.getElementById("foodQty").value);
+  let exp = document.getElementById("foodExpiry").value;
+
+  foods.push({ name, quantity: qty, expiry: exp });
+
+  alert(`Successfully registered ${qty} ${name}!`);
+  displayFoodStore();
+
+  document.getElementById("foodName").value = "";
+  document.getElementById("foodQty").value = "";
+  document.getElementById("foodExpiry").value = "";
+});
+
+displayFoodStore();
+</script>
+
+</body>
+</html>
