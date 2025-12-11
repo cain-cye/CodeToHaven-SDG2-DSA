@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Home — Zero Hunger</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">ZERO HUNGER</div>
+
+  <div class="nav-links">
+    <a href="home.html">Home</a>
+    <a href="eligible.html">Eligible Households</a>
+    <a href="eligibility-check.html">Eligibility Check</a>
+    <a href="delivery.html">Delivery Queue</a>
+  </div>
+
+  <button class="nav-btn" onclick="location.href='login.html'">LOG OUT</button>
+</header>
+
+<section class="hero">
+  <h1>Food Distribution Made<br>Easy & Efficient</h1>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search beneficiaries or food items">
+    <button>Search</button>
+  </div>
+
+  <div class="icon-row">
+    <div class="icon-box" onclick="location.href='eligibility-check.html'">Eligibility Check</div>
+    <div class="icon-box" onclick="location.href='inventory.html'">Inventory Logging</div>
+    <div class="icon-box" onclick="location.href='sorting.html'">Sorting System</div>
+    <div class="icon-box" onclick="location.href='delivery.html'">Delivery Queue</div>
+  </div>
+</section>
+
+<section class="array-links">
+  <h2>Go to Section</h2>
+
+  <div class="array-buttons">
+    <button onclick="location.href='eligible.html'">Eligible Households</button>
+    <button onclick="location.href='eligibility-check.html'">Eligibility Check</button>
+    <button onclick="location.href='delivery.html'">Delivery Queue</button>
+  </div>
+</section>
+
+<section class="menu-section">
+  <h2>Available Food Items</h2>
+  <div class="menu-grid" id="inventoryGrid"></div>
+  <button class="view-btn" onclick="sortFoodByExpiry()">SORT BY EXPIRY</button>
+</section>
+
+<script>
+let inventoryArray = [
+  { name: "Rice", expiry: "2025-01-10" },
+  { name: "Canned Goods", expiry: "2024-12-02" },
+  { name: "Vegetables", expiry: "2024-11-15" }
+];
+
+window.onload = () => updateInventoryDisplay();
+
+function updateInventoryDisplay() {
+  let grid = document.getElementById("inventoryGrid");
+  grid.innerHTML = "";
+  inventoryArray.forEach(item => {
+    grid.innerHTML += `
+      <div class="item-box">
+        <h3>${item.name}</h3>
+        <p>Expiry: ${item.expiry}</p>
+        <button>Distribute</button>
+      </div>`;
+  });
+}
+
+function sortFoodByExpiry() {
+  inventoryArray.sort((a,b)=> new Date(a.expiry) - new Date(b.expiry));
+  updateInventoryDisplay();
+  alert("Sorted by expiry!");
+}
+</script>
+
+</body>
+</html>
