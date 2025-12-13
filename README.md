@@ -32,8 +32,11 @@ User Dashboard
 - The user dashboard displays available food items and provides quick access to main features. You can search for beneficiaries or food items using the search bar. The main sections are:
 
 Eligibility Check: Click to check if a household qualifies for food assistance based on income.
+
 Inventory Logging: View current food inventory and stock levels.
+
 Delivery Queue: See pending deliveries waiting to be processed.
+
 Available Food Items: Browse all registered food with expiry dates. Sort by expiry to prioritize items expiring soon.
 
 Admin Dashboard
