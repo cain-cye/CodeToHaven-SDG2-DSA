@@ -102,3 +102,5 @@ Ramirez, Jay Darrius G.
 Sipin, Stephen Joshua B.
 - Planning, Sorting Concept, Testing, Documentation
 
+Alpas, Lee Endrey A.
+- Shadow Member
